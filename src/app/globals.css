@@ -1,26 +1,172 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is([data-theme="dark"] *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), var(--font-noto-tc), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   Theme A: Dark — 深色高級感
+   ============================================ */
+:root,
+[data-theme="dark"] {
+  --radius: 0.625rem;
+  --background: oklch(0.08 0.01 260);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.12 0.008 260);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.12 0.008 260);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.72 0.17 195);
+  --primary-foreground: oklch(0.08 0.01 260);
+  --secondary: oklch(0.16 0.005 260);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.16 0.005 260);
+  --muted-foreground: oklch(0.62 0 0);
+  --accent: oklch(0.72 0.17 195);
+  --accent-foreground: oklch(0.08 0.01 260);
+  --destructive: oklch(0.65 0.22 25);
+  --border: oklch(0.22 0.005 260);
+  --input: oklch(0.22 0.005 260);
+  --ring: oklch(0.72 0.17 195);
+
+  /* Custom tokens */
+  --hero-gradient-from: oklch(0.72 0.17 195);
+  --hero-gradient-to: oklch(0.68 0.14 240);
+  --glow-color: oklch(0.72 0.17 195);
+  --surface-elevated: oklch(0.14 0.008 260);
+  --success: oklch(0.7 0.18 155);
+  --success-muted: oklch(0.7 0.18 155 / 10%);
+  --warning: oklch(0.75 0.18 55);
+  --warning-muted: oklch(0.75 0.18 55 / 10%);
+}
+
+/* ============================================
+   Theme B: Light — 溫暖明亮
+   ============================================ */
+[data-theme="light"] {
+  --background: oklch(0.98 0.005 80);
+  --foreground: oklch(0.18 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 260);
+  --primary: oklch(0.62 0.2 30);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.01 80);
+  --secondary-foreground: oklch(0.3 0.02 260);
+  --muted: oklch(0.95 0.005 80);
+  --muted-foreground: oklch(0.46 0.02 260);
+  --accent: oklch(0.62 0.2 30);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.22 25);
+  --border: oklch(0.9 0.01 80);
+  --input: oklch(0.9 0.01 80);
+  --ring: oklch(0.62 0.2 30);
+
+  --hero-gradient-from: oklch(0.62 0.2 30);
+  --hero-gradient-to: oklch(0.58 0.22 350);
+  --glow-color: oklch(0.62 0.2 30);
+  --surface-elevated: oklch(1 0 0);
+  --success: oklch(0.55 0.18 155);
+  --success-muted: oklch(0.55 0.18 155 / 8%);
+  --warning: oklch(0.65 0.18 55);
+  --warning-muted: oklch(0.65 0.18 55 / 8%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--hero-gradient-from), var(--hero-gradient-to), var(--hero-gradient-from));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glow effect for CTA */
+.glow {
+  box-shadow: 0 0 20px color-mix(in oklch, var(--glow-color) 30%, transparent),
+              0 0 60px color-mix(in oklch, var(--glow-color) 10%, transparent);
+}
+
+.glow:hover {
+  box-shadow: 0 0 30px color-mix(in oklch, var(--glow-color) 50%, transparent),
+              0 0 80px color-mix(in oklch, var(--glow-color) 20%, transparent);
+}
+
+/* Card hover glow */
+.card-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-glow:hover {
+  border-color: color-mix(in oklch, var(--glow-color) 30%, transparent);
+  box-shadow: 0 0 30px color-mix(in oklch, var(--glow-color) 10%, transparent);
+}
+
+/* Light theme card shadow */
+[data-theme="light"] .card-glow {
+  box-shadow: 0 1px 3px oklch(0 0 0 / 6%);
+}
+
+[data-theme="light"] .card-glow:hover {
+  box-shadow: 0 8px 30px oklch(0 0 0 / 10%);
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Hero subtle background pattern */
+.bg-hero-pattern {
+  background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+  background-size: 40px 40px;
 }
