@@ -10,6 +10,7 @@ import {
   Check,
   Star,
 } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/config";
 
 const details = [
   { icon: User, label: "形式", value: "一對一面授" },
@@ -20,6 +21,8 @@ const details = [
 const tiers = [
   {
     name: "體驗課",
+    price: "$450",
+    unit: "/ 堂",
     highlight: false,
     description: "開好 AI 帳號，即帶走",
     features: [
@@ -31,19 +34,9 @@ const tiers = [
     cta: "預約體驗課",
   },
   {
-    name: "單堂",
-    highlight: false,
-    description: "按需預約，靈活自由",
-    features: [
-      "適合有特定需求嘅學員",
-      "導師針對你嘅問題指導",
-      "無綁定、無壓力",
-      "隨時停、隨時續",
-    ],
-    cta: "了解詳情",
-  },
-  {
     name: "四堂套餐",
+    price: "$1,800",
+    unit: "/ 4 堂",
     highlight: true,
     description: "有系統學習，完成自己嘅工具",
     features: [
@@ -104,7 +97,7 @@ export function CTA() {
         </ScrollReveal>
 
         {/* Pricing tiers */}
-        <div className="mb-12 grid gap-6 sm:grid-cols-3">
+        <div className="mb-12 grid gap-6 sm:grid-cols-2 mx-auto max-w-2xl">
           {tiers.map((tier, i) => (
             <ScrollReveal key={tier.name} delay={0.1 * i}>
               <div
@@ -120,6 +113,12 @@ export function CTA() {
                   </p>
                 )}
                 <h3 className="mb-1 text-xl font-bold">{tier.name}</h3>
+                <p className="mb-1 text-2xl font-bold text-primary">
+                  {tier.price}
+                  <span className="text-sm font-normal text-muted-foreground">
+                    {" "}{tier.unit}
+                  </span>
+                </p>
                 <p className="mb-6 text-sm text-muted-foreground">
                   {tier.description}
                 </p>
@@ -144,7 +143,7 @@ export function CTA() {
                   asChild
                 >
                   <a
-                    href="#"
+                    href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -168,7 +167,7 @@ export function CTA() {
               asChild
             >
               <a
-                href="#"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -181,7 +180,7 @@ export function CTA() {
       </div>
 
       {/* Footer */}
-      <div className="mt-24 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+      <div className="mt-24 border-t border-border px-6 pt-8 text-center text-sm text-muted-foreground">
         <p>本網站由 AI Coding 製作 — 正正就係課程會教到嘅技能</p>
       </div>
     </section>

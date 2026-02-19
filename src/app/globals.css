@@ -101,6 +101,85 @@
   --warning-muted: oklch(0.65 0.18 55 / 8%);
 }
 
+/* ============================================
+   Theme C: Anthropic — 暖色 editorial
+   Warm cream, terracotta accent, dark brown text
+   ============================================ */
+[data-theme="anthropic"] {
+  --background: oklch(0.96 0.015 75);
+  --foreground: oklch(0.18 0.025 55);
+  --card: oklch(0.99 0.008 75);
+  --card-foreground: oklch(0.18 0.025 55);
+  --popover: oklch(0.99 0.008 75);
+  --popover-foreground: oklch(0.18 0.025 55);
+  --primary: oklch(0.6 0.16 40);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.93 0.015 75);
+  --secondary-foreground: oklch(0.25 0.025 55);
+  --muted: oklch(0.93 0.01 75);
+  --muted-foreground: oklch(0.48 0.02 55);
+  --accent: oklch(0.6 0.16 40);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.88 0.015 75);
+  --input: oklch(0.88 0.015 75);
+  --ring: oklch(0.6 0.16 40);
+
+  --hero-gradient-from: oklch(0.6 0.16 40);
+  --hero-gradient-to: oklch(0.55 0.14 20);
+  --glow-color: oklch(0.6 0.16 40);
+  --surface-elevated: oklch(0.99 0.008 75);
+  --success: oklch(0.55 0.14 155);
+  --success-muted: oklch(0.55 0.14 155 / 8%);
+  --warning: oklch(0.65 0.14 70);
+  --warning-muted: oklch(0.65 0.14 70 / 8%);
+}
+
+/* ============================================
+   Theme D: Apple — 冷灰極簡
+   Cool gray, Apple Blue accent, near-black text
+   ============================================ */
+[data-theme="apple"] {
+  --background: oklch(0.965 0.003 265);
+  --foreground: oklch(0.15 0.005 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.005 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.005 265);
+  --primary: oklch(0.55 0.19 260);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.955 0.003 265);
+  --secondary-foreground: oklch(0.25 0.005 265);
+  --muted: oklch(0.955 0.003 265);
+  --muted-foreground: oklch(0.55 0.005 265);
+  --accent: oklch(0.55 0.19 260);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.87 0.005 265);
+  --input: oklch(0.87 0.005 265);
+  --ring: oklch(0.55 0.19 260);
+
+  --hero-gradient-from: oklch(0.55 0.19 260);
+  --hero-gradient-to: oklch(0.6 0.16 290);
+  --glow-color: oklch(0.55 0.19 260);
+  --surface-elevated: oklch(1 0 0);
+  --success: oklch(0.52 0.16 150);
+  --success-muted: oklch(0.52 0.16 150 / 8%);
+  --warning: oklch(0.7 0.16 80);
+  --warning-muted: oklch(0.7 0.16 80 / 8%);
+}
+
+/* Light theme card shadow — applies to all light-based themes */
+[data-theme="anthropic"] .card-glow,
+[data-theme="apple"] .card-glow {
+  box-shadow: 0 1px 3px oklch(0 0 0 / 6%);
+}
+
+[data-theme="anthropic"] .card-glow:hover,
+[data-theme="apple"] .card-glow:hover {
+  box-shadow: 0 8px 30px oklch(0 0 0 / 10%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -163,6 +242,33 @@
 
 .cursor-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* Portfolio image scroll on hover */
+.portfolio-scroll {
+  object-position: top;
+  transition: object-position 3s ease-in-out;
+}
+
+.group:hover .portfolio-scroll {
+  object-position: bottom;
+}
+
+/* Reduced motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient {
+    animation: none;
+  }
+  .cursor-blink {
+    animation: none;
+  }
+  .portfolio-scroll {
+    transition: none;
+  }
+  .glow,
+  .card-glow {
+    transition: none;
+  }
 }
 
 /* Hero subtle background pattern */

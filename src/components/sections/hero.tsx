@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WHATSAPP_URL } from "@/lib/config";
 
 export function Hero() {
   return (
@@ -24,7 +25,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6 text-sm font-medium tracking-widest uppercase text-primary"
+          className="mb-6 mt-4 text-sm font-medium tracking-widest uppercase text-primary"
         >
           一對一面授指導 &middot; 灣仔工作室 &middot; 廣東話授課
         </motion.p>
@@ -51,21 +52,35 @@ export function Hero() {
           唔使識英文，唔使識 coding，導師全程陪你由零到成品。
         </motion.p>
 
-        {/* Trial lesson highlight */}
+        {/* Trial lesson card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85 }}
-          className="mx-auto mb-10 max-w-md"
+          className="mx-auto mb-10 max-w-xl"
         >
-          <div className="flex items-center justify-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-3">
-            <Sparkles className="h-4 w-4 shrink-0 text-primary" />
-            <p className="text-sm">
-              <span className="font-semibold">體驗課即帶走</span>
-              <span className="text-muted-foreground">
-                {" "}— 香港可長期安全使用嘅 AI 付費帳號
-              </span>
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 text-left sm:p-6">
+            <div className="mb-3 flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              <p className="text-sm font-semibold text-primary">首堂體驗課</p>
+            </div>
+            <h3 className="mb-2 text-lg font-bold">
+              手把手幫你開好 AI 帳號
+            </h3>
+            <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+              教你點樣喺香港安全開設 Claude 同 ChatGPT
+              嘅付費帳號。完成之後即刻帶走可以長期使用嘅帳號——就算唔繼續上堂，呢個已經值回票價。
             </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+              <span className="flex items-center gap-1.5 text-sm">
+                <Check className="h-3.5 w-3.5 text-primary" />
+                完成即帶走
+              </span>
+              <span className="flex items-center gap-1.5 text-sm">
+                <Check className="h-3.5 w-3.5 text-primary" />
+                可長期使用嘅 AI 帳號
+              </span>
+            </div>
           </div>
         </motion.div>
 
@@ -105,7 +120,9 @@ export function Hero() {
             className="glow h-14 rounded-full px-10 text-base font-semibold transition-all"
             asChild
           >
-            <a href="#contact">免費了解課程</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              免費了解課程
+            </a>
           </Button>
           <Button
             variant="outline"
@@ -118,20 +135,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-          <ArrowDown className="h-5 w-5 text-muted-foreground" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

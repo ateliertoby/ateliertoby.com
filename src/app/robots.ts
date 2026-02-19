@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-
-// TODO: Replace with your actual domain before deployment
-const SITE_URL = "https://example.com";
+import { SITE_URL } from "@/lib/config";
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -60,7 +60,7 @@ export function Pitfalls() {
           </p>
         </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {comparisons.map((item, i) => (
             <ScrollReveal key={item.withTitle} delay={0.1 * i}>
               <div className="card-glow overflow-hidden rounded-xl border border-border">

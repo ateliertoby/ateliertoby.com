@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { useInView, motion } from "framer-motion";
+import Image from "next/image";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { TypingEffect } from "@/components/typing-effect";
 import { X, Check, User, Bot, Globe } from "lucide-react";
@@ -12,10 +13,10 @@ const badReply =
   "好的！你想要咩網站呢？可以提供多啲資料嗎？例如你想要咩功能、咩設計風格？有冇參考網站？用咩程式語言？需要數據庫嗎？...";
 
 const goodPrompt =
-  "我開咗間車房，想整一個網頁俾客人自己 book 時間嚟整車。要有我啲服務清單同價錢，book 完自動 send 個 WhatsApp 俾我確認。手機睇都要靚。";
+  "我開咗間車房，而家用紙同 WhatsApp 記邊架車要修，成日搵唔返紀錄，又唔記得邊個客嘅車整到邊個步驟。我想要個系統可以一眼睇晒今日所有車嘅狀態，同埋記低每架車嘅維修歷史。手機同電腦都要用到。";
 
 const goodReply =
-  "明白！我幫你整一個車房預約網頁。會包含：服務清單連價目表、日曆俾客人揀時間、確認後自動發 WhatsApp 通知你、手機版面自動適配。而家開始幫你建立...";
+  "明白！我幫你整一個車房管理系統。會包含：今日工作台顯示所有車嘅維修狀態、客戶同車輛資料庫、每架車嘅完整維修紀錄、電腦同手機都用到嘅介面。而家開始幫你建立...";
 
 function ChatBubble({
   role,
@@ -115,35 +116,34 @@ function DemoColumn({
         )}
       </div>
 
-      {/* Product preview for good prompt */}
+      {/* Product preview for good prompt — real screenshot */}
       {type === "good" && showReply && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-3 overflow-hidden rounded-xl border border-primary/20"
+          className="group/preview mt-3 overflow-hidden rounded-xl border border-primary/20"
         >
           <div className="flex items-center gap-1.5 bg-primary/5 px-3 py-2">
             <div className="h-2 w-2 rounded-full bg-muted-foreground/30" />
             <div className="h-2 w-2 rounded-full bg-muted-foreground/30" />
             <div className="h-2 w-2 rounded-full bg-muted-foreground/30" />
             <span className="ml-2 text-xs text-muted-foreground">
-              預覽：你嘅車房預約網頁
+              預覽：你嘅車房管理系統
             </span>
           </div>
-          <div className="space-y-2.5 bg-card/50 p-4">
-            <div className="h-5 w-2/3 rounded bg-primary/15" />
-            <div className="flex gap-2">
-              <div className="h-8 flex-1 rounded bg-secondary" />
-              <div className="h-8 flex-1 rounded bg-secondary" />
-              <div className="h-8 flex-1 rounded bg-secondary" />
-            </div>
-            <div className="h-16 rounded bg-secondary" />
-            <div className="mx-auto h-8 w-1/3 rounded-full bg-primary/20" />
+          <div className="relative h-48 overflow-hidden sm:h-56">
+            <Image
+              src="/portfolio/car-clinic.png"
+              alt="AI 幫你整好嘅車房管理系統，顯示今日工作台同維修狀態"
+              fill
+              className="portfolio-scroll object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
           <div className="bg-primary/5 px-4 py-2 text-center">
             <p className="text-xs font-medium text-primary">
-              幾分鐘後，AI 已經幫你整好一個可以用嘅預約網頁
+              幾分鐘後，AI 已經幫你整好一個可以用嘅管理系統
             </p>
           </div>
         </motion.div>

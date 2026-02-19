@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/config";
 
 const links = [
   { href: "#story", label: "點解開課" },
@@ -32,7 +33,7 @@ export function Navbar() {
         className="fixed top-0 right-0 left-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg"
       >
         <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="#" className="text-lg font-bold">
+          <a href="/" className="text-lg font-bold">
             AI Coding <span className="text-primary">實戰課程</span>
           </a>
 
@@ -48,14 +49,16 @@ export function Navbar() {
               </a>
             ))}
             <Button size="sm" className="glow rounded-full px-6" asChild>
-              <a href="#contact">立即查詢</a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                立即查詢
+              </a>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-foreground md:hidden"
+            className="flex h-11 w-11 items-center justify-center text-foreground md:hidden"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -78,7 +81,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className="rounded-lg px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   >
                     {link.label}
                   </a>
@@ -88,7 +91,12 @@ export function Navbar() {
                   className="glow mt-2 rounded-full"
                   asChild
                 >
-                  <a href="#contact" onClick={() => setMobileOpen(false)}>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                  >
                     立即查詢
                   </a>
                 </Button>

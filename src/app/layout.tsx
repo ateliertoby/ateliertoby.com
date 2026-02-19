@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_TC, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,9 +22,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
-
-// TODO: Replace with your actual domain before deployment
-const SITE_URL = "https://example.com";
 
 const faqs = [
   {
@@ -64,6 +62,7 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "AI 寫程式課程香港 | 廣東話一對一教學",
   description:
     "香港 AI coding 實戰課程。一對一廣東話面授，由零開始用 ChatGPT、Claude 寫出解決業務痛點嘅工具。無需 coding 經驗、無需識英文。適合 freelancer、自媒體、中小企老闆。灣仔上課。",
@@ -91,10 +90,9 @@ export const metadata: Metadata = {
     locale: "zh_HK",
     url: SITE_URL,
     siteName: "AI Coding 實戰課程",
-    // TODO: Replace with actual OG image (1200x630)
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "AI Coding 實戰課程 — 廣東話一對一教學",
@@ -106,8 +104,7 @@ export const metadata: Metadata = {
     title: "AI 寫程式課程香港 | 廣東話一對一教學",
     description:
       "由零開始用 AI 寫出解決業務痛點嘅工具。無需經驗、無需識英文。",
-    // TODO: Replace with actual image
-    images: [`${SITE_URL}/og-image.png`],
+    images: [`${SITE_URL}/opengraph-image`],
   },
 };
 
@@ -117,7 +114,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-Hant-HK" data-theme="dark">
+    <html lang="zh-Hant-HK" data-theme="light">
       <head>
         {/* Course schema */}
         <script

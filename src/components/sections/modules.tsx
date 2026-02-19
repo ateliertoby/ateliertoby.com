@@ -2,7 +2,6 @@
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import {
-  Sparkles,
   Settings,
   Shield,
   MessageSquare,
@@ -20,7 +19,7 @@ const modules = [
     number: "01",
     title: "設置",
     description:
-      "手把手教你喺香港以月費訂閱各個 AI 帳號。導師已親身試驗多種方法，保證可以長期安全使用。同時認識唔同 AI 嘅能力同收費，揀到最啱自己嘅方案。",
+      "喺香港以月費訂閱各個 AI 帳號，認識唔同 AI 嘅能力同收費，揀到最啱自己嘅方案。",
     highlights: [
       "香港實測可行嘅開戶方法",
       "認識唔同 AI 嘅能力同收費",
@@ -82,49 +81,18 @@ export function Modules() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.15}>
-          <p className="mb-8 max-w-2xl text-lg text-muted-foreground">
+          <p className="mb-12 max-w-2xl text-lg text-muted-foreground">
             全程用廣東話，唔使識英文。AI 會幫你處理所有英文嘅部分。
             學完基礎之後，你已經有能力自己繼續探索。
           </p>
-        </ScrollReveal>
-
-        {/* Trial lesson highlight */}
-        <ScrollReveal delay={0.2}>
-          <div className="mb-12 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                <Sparkles className="h-7 w-7 text-primary" />
-              </div>
-              <div className="flex-1">
-                <p className="mb-1 text-sm font-medium text-primary">
-                  首堂體驗課
-                </p>
-                <h3 className="mb-2 text-xl font-bold">
-                  手把手幫你開好 AI 帳號
-                </h3>
-                <p className="text-muted-foreground">
-                  體驗課會教你點樣喺香港安全開設 Claude 同 ChatGPT
-                  嘅付費帳號。完成之後你即刻帶走可以長期使用嘅帳號——就算唔繼續上堂，呢個已經值回票價。
-                </p>
-              </div>
-              <div className="shrink-0">
-                <div className="rounded-lg bg-card px-4 py-3 text-center">
-                  <p className="text-xs text-muted-foreground">完成即帶走</p>
-                  <p className="text-sm font-bold">
-                    可長期使用嘅 AI 帳號
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </ScrollReveal>
 
         {/* Module cards */}
         <div className="grid gap-6 sm:grid-cols-2">
           {modules.map((mod, i) => (
             <ScrollReveal key={mod.number} delay={0.1 * i}>
-              <div className="card-glow group relative flex h-full flex-col rounded-xl border border-border bg-card p-8">
-                <span className="mb-6 text-5xl font-bold text-border">
+              <div className="card-glow group relative flex h-full flex-col rounded-xl border border-border bg-card p-5 sm:p-8">
+                <span className="mb-4 text-4xl font-bold text-border sm:mb-6 sm:text-5xl">
                   {mod.number}
                 </span>
 
@@ -170,7 +138,7 @@ export function Modules() {
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <div>
                   <p className="font-medium">每堂 90 分鐘</p>
-                  <p className="text-sm text-muted-foreground">可連上兩堂</p>
+                  <p className="text-sm text-muted-foreground">按情況可接受二人同行</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

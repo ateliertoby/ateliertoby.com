@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/config";
 
 export function FAB() {
   const [visible, setVisible] = useState(false);
@@ -17,7 +18,9 @@ export function FAB() {
     <AnimatePresence>
       {visible && (
         <motion.a
-          href="#contact"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
