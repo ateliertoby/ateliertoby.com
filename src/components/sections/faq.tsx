@@ -43,7 +43,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
     <div className="border-b border-border">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left"
+        className="flex w-full items-center justify-between gap-4 rounded-lg px-2 py-5 text-left transition-colors hover:bg-muted/50 sm:px-4"
       >
         <span className="font-medium">{q}</span>
         <ChevronDown
@@ -61,7 +61,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <p className="pb-5 leading-relaxed text-muted-foreground">{a}</p>
+            <p className="px-2 pb-5 leading-relaxed text-muted-foreground sm:px-4">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
