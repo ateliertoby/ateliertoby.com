@@ -90,7 +90,7 @@ export function Portfolio() {
                     src={project.image}
                     alt={project.alt}
                     fill
-                    className="portfolio-scroll object-cover"
+                    className="portfolio-scroll object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <span className="absolute top-3 right-3 z-10 rounded-full bg-background/80 px-2.5 py-1 text-xs font-medium backdrop-blur-sm">
