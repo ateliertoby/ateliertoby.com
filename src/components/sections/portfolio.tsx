@@ -44,7 +44,6 @@ const projects = [
   },
 ];
 
-const demos = [BookingDemo, CarClinicDemo, DriverEarningsDemo];
 
 export function Portfolio() {
   const [activeDemo, setActiveDemo] = useState<number | null>(null);

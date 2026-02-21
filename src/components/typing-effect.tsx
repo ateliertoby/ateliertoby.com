@@ -32,11 +32,16 @@ export function TypingEffect({
 
   useEffect(() => {
     if (!started) return;
+    
+    // We handle the completion through the timeout to avoid direct synchronous setState in the render cycle
     if (displayed.length >= text.length) {
-      setDone(true);
-      onComplete?.();
-      return;
+      const t = setTimeout(() => {
+        setDone(true);
+        onComplete?.();
+      }, 0);
+      return () => clearTimeout(t);
     }
+    
     const timeout = setTimeout(() => {
       setDisplayed(text.slice(0, displayed.length + 1));
     }, speed);
