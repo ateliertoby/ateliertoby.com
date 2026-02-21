@@ -1,12 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import {
   Camera,
   Wrench,
   Music,
   ShoppingBag,
-  User,
 } from "lucide-react";
 
 const painPoints = [
@@ -79,9 +79,14 @@ export function Story() {
           {/* Instructor card */}
           <ScrollReveal delay={0.3} className="lg:col-span-2">
             <div className="card-glow rounded-xl border border-border bg-card p-6">
-              {/* Photo placeholder */}
-              <div className="mb-4 flex h-48 items-center justify-center rounded-lg bg-secondary">
-                <User className="h-12 w-12 text-muted-foreground" />
+              <div className="relative mb-4 h-48 overflow-hidden rounded-lg bg-secondary">
+                <Image
+                  src="/toby-sketch.png"
+                  alt="Toby — 課程導師"
+                  fill
+                  className="object-cover" style={{ objectPosition: "center 15%" }}
+                  sizes="(max-width: 1024px) 100vw, 300px"
+                />
               </div>
               <h3 className="mb-1 text-lg font-bold">Toby</h3>
               <p className="mb-3 text-sm text-primary">課程導師</p>

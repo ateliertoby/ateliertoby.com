@@ -25,7 +25,7 @@ const tiers = [
     unit: "/ 堂",
     highlight: true,
     badge: "推薦入門",
-    description: "開好 AI 帳號，即帶走",
+    description: "試一堂先，鍾意再補三堂完成課程",
     features: [
       "手把手開設 AI 付費帳號",
       "長期安全使用嘅方法",
@@ -43,7 +43,7 @@ const tiers = [
     features: [
       "包括四個單元嘅核心內容",
       "喺導師輔助下完成一個作品",
-      "四堂一次過報名",
+      "體驗課後補三堂就得",
       "學識自己解決問題",
     ],
     cta: "查詢套餐價",
