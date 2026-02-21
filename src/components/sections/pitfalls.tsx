@@ -33,7 +33,7 @@ const comparisons = [
     withoutDesc: "工具寫好咗但唔知點樣俾人用到，卡喺最後一步",
     withIcon: Compass,
     withTitle: "由寫到部署一條龍",
-    withDesc: "導師帶住你完成最後一步，真正用得到",
+    withDesc: "導師帶住你完成最後一步，真正用到",
   },
 ];
 

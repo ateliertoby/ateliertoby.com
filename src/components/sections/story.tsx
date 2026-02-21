@@ -62,15 +62,15 @@ export function Story() {
           <ScrollReveal delay={0.2} className="lg:col-span-3">
             <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
               <p>
-                我做過軟體 QA
-                工程師，後來自己做生意——開過餐廳、做過跨國貿易。創業路上認識咗好多同樣一個人撐起成盤生意嘅老闆。
+                我做過軟件 QA
+                工程師，後來自己做生意，開過餐廳、做過跨國貿易。創業路上認識咗好多同樣一個人撐起成盤生意嘅老闆。
               </p>
               <p>
                 了解過佢哋嘅日常工作之後，我發現好多令人頭痕嘅問題，其實只需要一啲好簡單嘅程式就可以解決。但市場上唔會有人為咁小嘅需求專登開發工具，搵人寫又貴。
               </p>
               <p className="font-medium text-foreground">
                 而家有咗
-                AI，呢啲工具你可以自己做。我教嘅唔係某一件工具嘅用法，而係解決問題嘅能力——無論將來
+                AI，呢啲工具你可以自己做。我教嘅唔係某一件工具嘅用法，而係解決問題嘅能力。無論將來
                 AI 點樣更新，呢套方法都終身受用。
               </p>
             </div>
@@ -86,7 +86,7 @@ export function Story() {
               <h3 className="mb-1 text-lg font-bold">Toby</h3>
               <p className="mb-3 text-sm text-primary">課程導師</p>
               <ul className="space-y-1.5 text-sm text-muted-foreground">
-                <li>前軟體 QA 工程師</li>
+                <li>前軟件 QA 工程師</li>
                 <li>餐廳老闆 / 跨國貿易經驗</li>
                 <li>兩年 AI 重度使用者</li>
               </ul>

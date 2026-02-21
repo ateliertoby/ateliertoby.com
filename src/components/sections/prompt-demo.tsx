@@ -216,7 +216,7 @@ export function PromptDemo() {
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 你只需要話：「用廣東話解釋呢個錯誤，同埋教我一步步點修正。」AI
-                就會用你嘅語言幫你解決。課堂上導師會教你呢啲實用技巧，確保你任何時候都唔會卡住。
+                就會用你嘅語言幫你解決。課堂上導師會教你呢啲實用技巧，以後自己都識處理。
               </p>
             </div>
           </div>

@@ -9,7 +9,7 @@ function ThemeApplier() {
 
   useEffect(() => {
     const valid = ["dark", "light", "anthropic", "apple", "brutalism"];
-    const selected = valid.includes(theme ?? "") ? theme! : "light";
+    const selected = valid.includes(theme ?? "") ? theme! : "brutalism";
     document.documentElement.setAttribute("data-theme", selected);
   }, [theme]);
 

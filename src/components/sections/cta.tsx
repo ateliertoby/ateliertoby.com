@@ -23,7 +23,8 @@ const tiers = [
     name: "體驗課",
     price: "$450",
     unit: "/ 堂",
-    highlight: false,
+    highlight: true,
+    badge: "推薦入門",
     description: "開好 AI 帳號，即帶走",
     features: [
       "手把手開設 AI 付費帳號",
@@ -37,13 +38,13 @@ const tiers = [
     name: "四堂套餐",
     price: "$1,800",
     unit: "/ 4 堂",
-    highlight: true,
+    highlight: false,
     description: "有系統學習，完成自己嘅工具",
     features: [
-      "涵蓋四大 Module 核心內容",
+      "包括四個單元嘅核心內容",
       "喺導師輔助下完成一個作品",
-      "套餐優惠價",
-      "建立獨立解決問題嘅能力",
+      "四堂一次過報名",
+      "學識自己解決問題",
     ],
     cta: "查詢套餐價",
   },
@@ -61,10 +62,10 @@ export function CTA() {
             </div>
             <div className="flex-1">
               <p className="mb-1 text-lg font-bold">
-                創始學員限定
+                首批學員限定
               </p>
               <p className="text-sm text-muted-foreground">
-                首批學員將獲得導師最密集嘅親自指導同限定優惠。名額有限，額滿即止。
+                首批學員會得到導師最密切嘅指導同特別優惠。名額有限，額滿即止。
               </p>
             </div>
           </div>
@@ -101,16 +102,16 @@ export function CTA() {
           {tiers.map((tier, i) => (
             <ScrollReveal key={tier.name} delay={0.1 * i}>
               <div
-                className={`card-glow flex h-full flex-col rounded-xl border p-6 ${
+                className={`card-glow relative flex h-full flex-col rounded-xl border p-6 ${
                   tier.highlight
                     ? "border-primary/30 bg-primary/5"
                     : "border-border bg-card"
                 }`}
               >
-                {tier.highlight && (
-                  <p className="mb-2 text-xs font-medium text-primary">
-                    推薦
-                  </p>
+                {tier.badge && (
+                  <span className="absolute -top-3 left-4 rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-foreground">
+                    {tier.badge}
+                  </span>
                 )}
                 <h3 className="mb-1 text-xl font-bold">{tier.name}</h3>
                 <p className="mb-1 text-2xl font-bold text-primary">
@@ -181,7 +182,7 @@ export function CTA() {
 
       {/* Footer */}
       <div className="mt-24 border-t border-border px-6 pt-8 text-center text-sm text-muted-foreground">
-        <p>本網站由 AI Coding 製作 — 正正就係課程會教到嘅技能</p>
+        <p>呢個網站用 AI 寫出嚟，正正就係課程會教嘅嘢</p>
       </div>
     </section>
   );

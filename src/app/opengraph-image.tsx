@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "AI Coding 實戰課程 — 廣東話一對一教學";
+export const alt = "AI Coding 實戰課程｜廣東話一對一教學";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

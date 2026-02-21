@@ -69,7 +69,7 @@ export function Hero() {
             </h3>
             <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
               教你點樣喺香港安全開設 Claude 同 ChatGPT
-              嘅付費帳號。完成之後即刻帶走可以長期使用嘅帳號——就算唔繼續上堂，呢個已經值回票價。
+              嘅付費帳號。完成之後即刻帶走可以長期使用嘅帳號。就算唔繼續上堂，呢個已經值回票價。
             </p>
             <div className="flex flex-wrap gap-x-4 gap-y-1.5">
               <span className="flex items-center gap-1.5 text-sm">

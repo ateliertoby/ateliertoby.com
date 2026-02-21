@@ -277,3 +277,132 @@
   background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
   background-size: 40px 40px;
 }
+
+/* ============================================
+   Theme F: Brutalism — Neo-Brutalism
+   Hard shadows, thick black borders, warm orange accent
+   ============================================ */
+[data-theme="brutalism"] {
+  --radius: 0.125rem;
+  --background: oklch(0.98 0.02 85);
+  --foreground: oklch(0.12 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0 0);
+  --primary: oklch(0.72 0.15 60);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.94 0.015 85);
+  --secondary-foreground: oklch(0.12 0 0);
+  --muted: oklch(0.94 0.01 85);
+  --muted-foreground: oklch(0.42 0.01 55);
+  --accent: oklch(0.72 0.15 60);
+  --accent-foreground: oklch(0.05 0 0);
+  --destructive: oklch(0.58 0.24 25);
+  --border: oklch(0.12 0 0);
+  --input: oklch(0.12 0 0);
+  --ring: oklch(0.72 0.15 60);
+
+  --hero-gradient-from: oklch(0.72 0.15 60);
+  --hero-gradient-to: oklch(0.72 0.15 60);
+  --glow-color: oklch(0.72 0.15 60);
+  --surface-elevated: oklch(1 0 0);
+  --success: oklch(0.72 0.19 155);
+  --success-muted: oklch(0.72 0.19 155 / 15%);
+  --warning: oklch(0.82 0.13 70);
+  --warning-muted: oklch(0.82 0.13 70 / 15%);
+
+  /* Brutalism-specific tokens */
+  --brutal-shadow: 4px 4px 0 0 oklch(0.12 0 0);
+  --brutal-shadow-sm: 3px 3px 0 0 oklch(0.12 0 0);
+  --brutal-shadow-lg: 6px 6px 0 0 oklch(0.12 0 0);
+  --brutal-border: 3px solid oklch(0.12 0 0);
+}
+
+/* --- Brutalism visual overrides --- */
+
+/* Card shadows */
+[data-theme="brutalism"] .card-glow {
+  border-width: 3px;
+  border-color: var(--border);
+  box-shadow: var(--brutal-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+[data-theme="brutalism"] .card-glow:hover {
+  border-color: var(--border);
+  box-shadow: var(--brutal-shadow-lg);
+  transform: translate(-2px, -2px);
+}
+
+/* CTA buttons + FAB */
+[data-theme="brutalism"] .glow {
+  box-shadow: var(--brutal-shadow);
+  border: var(--brutal-border);
+  border-radius: var(--radius-lg) !important;
+}
+[data-theme="brutalism"] .glow:hover {
+  box-shadow: var(--brutal-shadow-lg);
+  transform: translate(-2px, -2px);
+  scale: 1 !important;
+}
+[data-theme="brutalism"] .glow:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+  scale: 1 !important;
+}
+
+/* Text gradient → flat color */
+[data-theme="brutalism"] .text-gradient {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+  animation: none;
+  color: var(--foreground);
+}
+
+/* All buttons */
+[data-theme="brutalism"] [data-slot="button"] {
+  border-radius: var(--radius-lg) !important;
+  border: var(--brutal-border);
+}
+
+/* Non-card-glow containers */
+[data-theme="brutalism"] section .rounded-xl.border {
+  border-width: 3px;
+  border-color: var(--border);
+  box-shadow: var(--brutal-shadow);
+}
+
+/* Navbar — solid background, no blur */
+[data-theme="brutalism"] header.fixed {
+  background: var(--background) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-width: 3px;
+}
+
+/* Disable backdrop-blur everywhere */
+[data-theme="brutalism"] [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Hero pattern — denser dots */
+[data-theme="brutalism"] .bg-hero-pattern {
+  background-size: 30px 30px;
+}
+
+/* Portfolio modal */
+[data-theme="brutalism"] [role="dialog"] .rounded-xl {
+  border-width: 3px;
+  box-shadow: var(--brutal-shadow-lg);
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="brutalism"] .card-glow,
+  [data-theme="brutalism"] .glow {
+    transition: none;
+  }
+}
