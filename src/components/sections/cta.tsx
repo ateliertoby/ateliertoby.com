@@ -15,7 +15,7 @@ import { WHATSAPP_URL } from "@/lib/config";
 const details = [
   { icon: User, label: "形式", value: "一對一面授" },
   { icon: Globe, label: "語言", value: "廣東話" },
-  { icon: Clock, label: "每堂", value: "90 分鐘" },
+  { icon: Clock, label: "每堂", value: "60 分鐘" },
 ];
 
 const tiers = [
@@ -65,7 +65,7 @@ export function CTA() {
                 首批學員限定
               </p>
               <p className="text-sm text-muted-foreground">
-                首批學員會得到導師最密切嘅指導同特別優惠。名額有限，額滿即止。
+                首批學員會得到導師最貼身嘅跟進同特別優惠。名額有限，額滿即止。
               </p>
             </div>
           </div>
@@ -182,7 +182,7 @@ export function CTA() {
 
       {/* Footer */}
       <div className="mt-24 border-t border-border px-6 pt-8 text-center text-sm text-muted-foreground">
-        <p>呢個網站用 AI 寫出嚟，正正就係課程會教嘅嘢</p>
+        <p>© 2025–2026 AI Coding 實戰課程</p>
       </div>
     </section>
   );

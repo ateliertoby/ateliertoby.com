@@ -2,8 +2,8 @@
 
 import { useState, useCallback, useRef } from "react";
 import { useInView, motion } from "framer-motion";
-import Image from "next/image";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { CarClinicMockup } from "@/components/car-clinic-mockup";
 import { TypingEffect } from "@/components/typing-effect";
 import { X, Check, User, Bot, Globe } from "lucide-react";
 
@@ -116,7 +116,7 @@ function DemoColumn({
         )}
       </div>
 
-      {/* Product preview for good prompt — real screenshot */}
+      {/* Product preview for good prompt */}
       {type === "good" && showReply && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -132,15 +132,7 @@ function DemoColumn({
               預覽：你嘅車房管理系統
             </span>
           </div>
-          <div className="relative h-48 overflow-hidden sm:h-56">
-            <Image
-              src="/portfolio/car-clinic.png"
-              alt="AI 幫你整好嘅車房管理系統，顯示今日工作台同維修狀態"
-              fill
-              className="portfolio-scroll object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
+          <CarClinicMockup />
           <div className="bg-primary/5 px-4 py-2 text-center">
             <p className="text-xs font-medium text-primary">
               幾分鐘後，AI 已經幫你整好一個可以用嘅管理系統

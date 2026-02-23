@@ -83,7 +83,7 @@ export function Modules() {
         <ScrollReveal delay={0.15}>
           <p className="mb-12 max-w-2xl text-lg text-muted-foreground">
             全程用廣東話，唔使識英文。AI 會幫你處理所有英文嘅部分。
-            學完基礎之後，你已經有能力自己繼續探索。
+            學完基礎之後，自己都識繼續摸索。
           </p>
         </ScrollReveal>
 
@@ -137,7 +137,7 @@ export function Modules() {
               <div className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <div>
-                  <p className="font-medium">每堂 90 分鐘</p>
+                  <p className="font-medium">每堂 60 分鐘</p>
                   <p className="text-sm text-muted-foreground">按情況可接受二人同行</p>
                 </div>
               </div>

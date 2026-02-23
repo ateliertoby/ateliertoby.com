@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "我需要咩電腦？iPad 得唔得？",
     answer:
-      "iPad 暫時仲未適合做編程，最起碼需要一部 MacBook 或者 Windows 手提電腦。如果你暫時未有電腦，導師有舊 MacBook 可以喺課堂時借用，試過先再決定。導師會幫你分析實際需要。",
+      "iPad 暫時仲未適合寫 code，最起碼需要一部 MacBook 或者 Windows 手提電腦。如果你暫時未有電腦，導師有舊 MacBook 可以喺課堂時借用，試過先再決定。導師會幫你分析實際需要。",
   },
   {
     question: "AI 成日更新，學完會唔會好快過時？",
@@ -181,7 +181,6 @@ export default function RootLayout({
                 "@type": "City",
                 name: "香港",
               },
-              // TODO: Add telephone and url when available
             }),
           }}
         />

@@ -11,7 +11,7 @@ const links = [
   { href: "#story", label: "點解開課" },
   { href: "#modules", label: "課程內容" },
   { href: "#demo", label: "效果示範" },
-  { href: "#portfolio", label: "導師作品" },
+  { href: "#proof", label: "AI 實證" },
   { href: "#faq", label: "常見問題" },
 ];
 

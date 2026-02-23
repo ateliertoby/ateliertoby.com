@@ -47,7 +47,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
         >
-          用你熟悉嘅廣東話指揮 AI，寫出專屬你業務嘅工具。
+          用你熟悉嘅廣東話指揮 AI，寫出啱你生意用嘅工具。
           <br className="hidden sm:block" />
           唔使識英文，唔使識 coding，導師全程陪你由零到成品。
         </motion.p>
