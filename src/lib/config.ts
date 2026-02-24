@@ -1,5 +1,4 @@
-// Replace with your actual domain before deployment
-export const SITE_URL = "https://example.com";
+export const SITE_URL = "https://toby.courses";
 
 export const WHATSAPP_URL =
   "https://wa.me/85296166766?text=" +

@@ -11,7 +11,7 @@ export default function OGImage() {
         style={{
           width: 1200,
           height: 630,
-          background: "linear-gradient(135deg, #0c1222, #0a1a2e, #0c1222)",
+          background: "#faf5ee",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -20,33 +20,20 @@ export default function OGImage() {
           position: "relative",
         }}
       >
-        {/* Accent glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            width: 600,
-            height: 300,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(14,165,233,0.15), transparent)",
-            transform: "translateX(-50%)",
-          }}
-        />
-
         {/* Badge */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: 8,
-            padding: "8px 20px",
-            borderRadius: 999,
-            border: "1px solid rgba(14,165,233,0.3)",
-            background: "rgba(14,165,233,0.1)",
-            marginBottom: 32,
+            padding: "8px 24px",
+            border: "3px solid #1a1a1a",
+            background: "#fff",
+            marginBottom: 36,
             fontSize: 20,
-            color: "#67e8f9",
+            fontWeight: 700,
+            color: "#1a1a1a",
+            boxShadow: "4px 4px 0 0 #1a1a1a",
           }}
         >
           灣仔面授 · 一對一 · 廣東話
@@ -55,26 +42,24 @@ export default function OGImage() {
         {/* Title */}
         <div
           style={{
-            fontSize: 64,
-            fontWeight: 800,
-            color: "white",
+            fontSize: 68,
+            fontWeight: 900,
+            color: "#1a1a1a",
             textAlign: "center",
             lineHeight: 1.2,
-            marginBottom: 20,
+            marginBottom: 16,
           }}
         >
           唔使請 Programmer
         </div>
         <div
           style={{
-            fontSize: 56,
-            fontWeight: 700,
-            background: "linear-gradient(90deg, #0ea5e9, #06b6d4)",
-            backgroundClip: "text",
-            color: "transparent",
+            fontSize: 60,
+            fontWeight: 900,
+            color: "#c87533",
             textAlign: "center",
             lineHeight: 1.2,
-            marginBottom: 32,
+            marginBottom: 36,
           }}
         >
           自己用 AI 就搞得掂
@@ -84,7 +69,7 @@ export default function OGImage() {
         <div
           style={{
             fontSize: 24,
-            color: "#94a3b8",
+            color: "#666",
             textAlign: "center",
           }}
         >
@@ -97,10 +82,11 @@ export default function OGImage() {
             position: "absolute",
             bottom: 40,
             fontSize: 18,
-            color: "#475569",
+            fontWeight: 700,
+            color: "#999",
           }}
         >
-          AI Coding 實戰課程
+          AI Coding 實戰課程 — toby.courses
         </div>
       </div>
     ),
