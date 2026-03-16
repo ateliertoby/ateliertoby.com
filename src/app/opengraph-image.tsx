@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "AI Coding 實戰課程｜廣東話一對一教學";
+export const alt = "Atelier Toby";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,60 +20,29 @@ export default function OGImage() {
           position: "relative",
         }}
       >
-        {/* Badge */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "8px 24px",
-            border: "3px solid #1a1a1a",
-            background: "#fff",
-            marginBottom: 36,
-            fontSize: 20,
-            fontWeight: 700,
-            color: "#1a1a1a",
-            boxShadow: "4px 4px 0 0 #1a1a1a",
-          }}
-        >
-          灣仔面授 · 一對一 · 廣東話
-        </div>
-
         {/* Title */}
         <div
           style={{
-            fontSize: 68,
+            fontSize: 72,
             fontWeight: 900,
             color: "#1a1a1a",
             textAlign: "center",
             lineHeight: 1.2,
-            marginBottom: 16,
+            marginBottom: 24,
           }}
         >
-          唔使請 Programmer
-        </div>
-        <div
-          style={{
-            fontSize: 60,
-            fontWeight: 900,
-            color: "#c87533",
-            textAlign: "center",
-            lineHeight: 1.2,
-            marginBottom: 36,
-          }}
-        >
-          自己用 AI 就搞得掂
+          Atelier Toby
         </div>
 
         {/* Subtitle */}
         <div
           style={{
-            fontSize: 24,
+            fontSize: 28,
             color: "#666",
             textAlign: "center",
           }}
         >
-          零經驗 · 無需識英文 · 由設置到部署全包
+          Tech、AI、開發日記。由第一性原理出發。
         </div>
 
         {/* Bottom brand */}
@@ -86,7 +55,7 @@ export default function OGImage() {
             color: "#999",
           }}
         >
-          AI Coding 實戰課程 — toby.courses
+          ateliertoby.com
         </div>
       </div>
     ),

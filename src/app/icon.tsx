@@ -11,7 +11,7 @@ export default function Icon() {
           width: 32,
           height: 32,
           borderRadius: 8,
-          background: "linear-gradient(135deg, #0ea5e9, #06b6d4)",
+          background: "#1a1a1a",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -22,7 +22,7 @@ export default function Icon() {
           letterSpacing: -1,
         }}
       >
-        AI
+        AT
       </div>
     ),
     { ...size }
