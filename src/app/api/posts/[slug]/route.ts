@@ -4,13 +4,18 @@ import { prisma } from "@/lib/db";
 import { requireApiKey } from "@/lib/auth";
 
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
   const post = await prisma.post.findUnique({ where: { slug } });
   if (!post) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  // Draft posts require auth
+  if (post.status !== "published") {
+    const authError = requireApiKey(req);
+    if (authError) return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
   return NextResponse.json(post);
 }
