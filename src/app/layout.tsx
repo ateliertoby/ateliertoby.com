@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_TC, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
@@ -119,7 +118,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-Hant-HK" data-theme="light">
+    <html lang="zh-Hant-HK" data-theme="brutalism">
       <head>
         {/* Course schema */}
         <script
@@ -214,7 +213,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${notoSansTC.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );
