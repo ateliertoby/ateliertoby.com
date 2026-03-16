@@ -6,6 +6,8 @@ import { Markdown } from "@/components/blog/markdown";
 import { readingTime } from "@/lib/reading-time";
 import { SITE_URL } from "@/lib/config";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

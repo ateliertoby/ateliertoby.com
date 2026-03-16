@@ -3,6 +3,8 @@ import { prisma } from "@/lib/db";
 import { PostCard } from "@/components/blog/post-card";
 import { Navbar } from "@/components/sections/navbar";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog | Atelier Toby",
   description: "Toby 嘅技術分享、開發日記、AI 觀點。",
