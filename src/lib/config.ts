@@ -1,4 +1,4 @@
-export const SITE_URL = "https://toby.courses";
+export const SITE_URL = "https://ateliertoby.com";
 
 export const WHATSAPP_URL =
   "https://wa.me/85296166766?text=" +
