@@ -22,6 +22,10 @@ export default async function Home() {
           <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl">
             Atelier <span className="text-primary">Toby</span>
           </h1>
+          <div className="mt-3 flex items-center gap-2">
+            <div className="h-0.5 w-8 bg-primary-deep" />
+            <div className="h-0.5 w-4 bg-highlight" />
+          </div>
           <p className="mt-4 max-w-xl text-lg text-muted-foreground">
             Tech、AI、開發日記。由第一性原理出發。
           </p>
@@ -44,7 +48,10 @@ export default async function Home() {
         {/* Latest Posts */}
         {posts.length > 0 && (
           <section className="mx-auto max-w-3xl px-6 py-16">
-            <h2 className="text-2xl font-bold">最新文章</h2>
+            <div className="flex items-center gap-3">
+              <h2 className="text-2xl font-bold">最新文章</h2>
+              <div className="h-0.5 flex-1 bg-primary-light" />
+            </div>
             <div className="mt-6 flex flex-col gap-6">
               {posts.map((post) => (
                 <PostCard

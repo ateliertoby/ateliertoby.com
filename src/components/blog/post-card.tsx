@@ -17,15 +17,16 @@ export function PostCard({ slug, title, excerpt, content, publishedAt }: PostCar
 
   return (
     <Link href={`/blog/${slug}`} className="group block">
-      <div className="card-glow rounded-xl border bg-card p-6">
+      <div className="card-glow rounded-xl border border-l-4 border-l-primary-light group-hover:border-l-primary-deep bg-card p-6 transition-all">
         <h3 className="text-lg font-bold group-hover:text-primary transition-colors">
           {title}
         </h3>
         <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{excerpt}</p>
-        <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground font-mono">
-          <span>{date}</span>
-          <span>·</span>
-          <span>{minutes} min read</span>
+        <div className="mt-4 flex items-center gap-3 text-xs font-mono">
+          <span className="text-muted-foreground">{date}</span>
+          <span className="rounded-full bg-highlight/10 px-2 py-0.5 text-highlight font-semibold">
+            {minutes} min
+          </span>
         </div>
       </div>
     </Link>

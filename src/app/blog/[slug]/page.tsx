@@ -49,10 +49,16 @@ export default async function BlogPostPage({ params }: Props) {
       <main className="mx-auto max-w-3xl px-6 pt-24 pb-16">
         <header className="mb-10">
           <h1 className="text-3xl font-bold sm:text-4xl">{post.title}</h1>
-          <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground font-mono">
-            <span>{date}</span>
-            <span>·</span>
-            <span>{minutes} min read</span>
+          <div className="mt-4 flex items-center gap-3 text-sm font-mono">
+            <span className="text-muted-foreground">{date}</span>
+            <span className="rounded-full bg-highlight/10 px-2.5 py-0.5 text-highlight font-semibold text-xs">
+              {minutes} min read
+            </span>
+          </div>
+          <div className="mt-6 flex gap-1">
+            <div className="h-1 w-16 bg-primary-deep rounded-full" />
+            <div className="h-1 w-6 bg-primary rounded-full" />
+            <div className="h-1 w-3 bg-primary-light rounded-full" />
           </div>
         </header>
         <Markdown content={post.content} />
