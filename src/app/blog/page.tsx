@@ -20,12 +20,16 @@ export default async function BlogPage() {
     <>
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 pt-24 pb-16">
-        <h1 className="text-4xl font-bold">Blog</h1>
-        <div className="mt-2 flex items-center gap-2">
-          <div className="h-0.5 w-8 bg-primary-deep" />
-          <div className="h-0.5 w-4 bg-highlight" />
+        <div className="flex items-center gap-4">
+          <div className="flex gap-1">
+            <div className="h-10 w-1.5 rounded-full bg-primary-deep" />
+            <div className="h-10 w-1.5 rounded-full bg-highlight" />
+          </div>
+          <div>
+            <h1 className="text-4xl font-bold">Blog</h1>
+            <p className="mt-1 text-muted-foreground">思考、開發、分享。</p>
+          </div>
         </div>
-        <p className="mt-3 text-muted-foreground">思考、開發、分享。</p>
 
         <div className="mt-10 flex flex-col gap-6">
           {posts.length === 0 && (
