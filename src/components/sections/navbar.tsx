@@ -18,9 +18,9 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
+      <header className="fixed top-0 right-0 left-0 z-50 border-b-4 border-black bg-background">
         <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <Link href="/" className="text-lg font-bold">
+          <Link href="/" className="text-2xl font-black uppercase tracking-tighter">
             Atelier <span className="text-primary">Toby</span>
           </Link>
 
@@ -32,10 +32,10 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm transition-colors ${
+                  className={`px-3 py-1.5 text-sm font-bold border-2 transition-all ${
                     isActive
-                      ? "font-bold text-foreground border-b-2 border-primary pb-0.5"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "border-black bg-yellow-400 text-black shadow-[2px_2px_0px_#000000]"
+                      : "border-transparent text-muted-foreground hover:border-black hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#000000]"
                   }`}
                 >
                   {link.label}
@@ -62,9 +62,9 @@ export function Navbar() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-lg md:hidden"
+              className="overflow-hidden border-t-4 border-black bg-background md:hidden"
             >
-              <div className="flex flex-col gap-1 px-6 py-4">
+              <div className="flex flex-col gap-2 px-6 py-4">
                 {links.map((link) => {
                   const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
                   return (
@@ -72,10 +72,10 @@ export function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`rounded-lg px-3 py-3 text-sm transition-colors ${
+                      className={`block px-4 py-3 text-sm font-bold border-2 transition-all ${
                         isActive
-                          ? "font-bold text-foreground bg-primary-light/20"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          ? "border-black bg-yellow-400 text-black shadow-[2px_2px_0px_#000000]"
+                          : "border-transparent text-muted-foreground hover:border-black hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#000000]"
                       }`}
                     >
                       {link.label}
