@@ -17,10 +17,10 @@ export function PostCard({ slug, title, excerpt, content, publishedAt }: PostCar
 
   return (
     <Link href={`/blog/${slug}`} className="group block">
-      <div className="card-glow rounded-xl border bg-card overflow-hidden flex">
-        <div className="w-1.5 shrink-0 bg-gradient-to-b from-primary-light to-primary-deep" />
-        <div className="p-6 flex-1">
-          <h3 className="text-lg font-bold group-hover:text-primary transition-colors">
+      <div className="flex overflow-hidden rounded-sm border-4 border-black bg-white shadow-[6px_6px_0px_#000000] transition-transform duration-75 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0px_#000000]">
+        <div className="w-1.5 shrink-0 bg-primary" />
+        <div className="flex-1 p-6">
+          <h3 className="text-xl font-black uppercase tracking-tight transition-colors group-hover:text-primary">
             {title}
           </h3>
           <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{excerpt}</p>
