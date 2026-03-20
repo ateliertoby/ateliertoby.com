@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
 import { PostCard } from "@/components/blog/post-card";
 import { Navbar } from "@/components/sections/navbar";
+import { Footer } from "@/components/footer";
 
 export const dynamic = "force-dynamic";
 
@@ -20,16 +21,11 @@ export default async function BlogPage() {
     <>
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 pt-24 pb-16">
-        <div className="flex items-center gap-4">
-          <div className="flex gap-1">
-            <div className="h-10 w-1.5 rounded-full bg-primary-deep" />
-            <div className="h-10 w-1.5 rounded-full bg-highlight" />
-          </div>
-          <div>
-            <h1 className="text-4xl font-bold">Blog</h1>
-            <p className="mt-1 text-muted-foreground">思考、開發、分享。</p>
-          </div>
-        </div>
+        <h1 className="text-4xl font-bold flex items-center gap-3">
+          <span className="inline-block w-1.5 h-9 bg-primary-deep rounded-full" />
+          Blog
+        </h1>
+        <p className="mt-2 text-muted-foreground">思考、開發、分享。</p>
 
         <div className="mt-10 flex flex-col gap-6">
           {posts.length === 0 && (
@@ -47,6 +43,7 @@ export default async function BlogPage() {
           ))}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

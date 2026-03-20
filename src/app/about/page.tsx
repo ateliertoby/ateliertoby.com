@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/sections/navbar";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "About | Atelier Toby",
@@ -21,6 +22,7 @@ export default function AboutPage() {
           </p>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
