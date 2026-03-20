@@ -18,25 +18,24 @@ export default async function Home() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-          <div className="bg-hero-pattern absolute inset-0 -z-10 opacity-30" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-light/15 to-transparent" />
-          <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl">
+        <section className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 text-center sm:min-h-[70vh]">
+          <div className="bg-hero-pattern absolute inset-0 -z-10 opacity-10" />
+          <h1 className="text-5xl font-black uppercase tracking-tighter sm:text-7xl md:text-8xl">
             Atelier <span className="text-primary">Toby</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-muted-foreground">
+          <p className="mt-6 max-w-xl border-2 border-black bg-yellow-400 px-3 py-1.5 text-xl font-bold text-black shadow-[4px_4px_0px_#000000]">
             Tech、AI、開發日記。由第一性原理出發。
           </p>
           <div className="mt-8 flex gap-4">
             <Link
               href="/blog"
-              className="glow inline-flex h-12 items-center rounded-full bg-primary px-8 font-semibold text-primary-foreground"
+              className="inline-flex h-12 items-center border-4 border-black bg-pink-500 px-8 font-bold text-white shadow-[4px_4px_0px_#000000] transition-all duration-75 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
             >
               Blog
             </Link>
             <Link
               href="/courses"
-              className="inline-flex h-12 items-center rounded-full border-3 border-border bg-card px-8 font-semibold"
+              className="inline-flex h-12 items-center border-4 border-black bg-white px-8 font-bold text-black shadow-[4px_4px_0px_#000000] transition-all duration-75 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
             >
               Courses
             </Link>
@@ -46,8 +45,8 @@ export default async function Home() {
         {/* Latest Posts */}
         {posts.length > 0 && (
           <section className="mx-auto max-w-3xl px-6 py-16">
-            <h2 className="text-2xl font-bold flex items-center gap-3">
-              <span className="inline-block w-1 h-7 bg-primary-deep rounded-full" />
+            <h2 className="flex items-center gap-3 text-3xl font-black uppercase tracking-tight">
+              <span className="inline-block h-8 w-8 border-4 border-black bg-primary" />
               最新文章
             </h2>
             <div className="mt-6 flex flex-col gap-6">
@@ -64,7 +63,7 @@ export default async function Home() {
             </div>
             <Link
               href="/blog"
-              className="mt-8 inline-block text-sm font-mono text-primary hover:underline"
+              className="mt-8 inline-block border-2 border-black bg-white px-4 py-2 text-sm font-bold shadow-[2px_2px_0px_#000000] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
             >
               睇全部文章 →
             </Link>
