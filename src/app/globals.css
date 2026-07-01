@@ -1,424 +1,272 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is([data-theme="dark"] *));
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
   --font-sans: var(--font-inter), var(--font-noto-tc), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), var(--font-noto-serif-tc), Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --color-ring: var(--ring);
-  --color-input: var(--input);
   --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--text-muted);
   --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --color-primary-light: var(--primary-light);
-  --color-primary-deep: var(--primary-deep);
-  --color-highlight: var(--highlight);
+
+  /* Spacing tokens */
+  --spacing-section: clamp(5rem, 10vw, 8rem);
+  --spacing-block: clamp(2rem, 4vw, 3rem);
+  --spacing-element: 1.5rem;
+
+  /* Corridor */
+  --width-corridor: 42rem;
+  --px-corridor: clamp(1.5rem, 5vw, 3rem);
 }
 
 /* ============================================
-   Theme A: Dark — 深色高級感
+   Paterson — Warm muted palette
+   Jim Jarmusch / Paterson (2016)
    ============================================ */
-:root,
-[data-theme="dark"] {
-  --radius: 0.625rem;
-  --background: oklch(0.08 0.01 260);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.12 0.008 260);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.12 0.008 260);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.72 0.17 195);
-  --primary-foreground: oklch(0.08 0.01 260);
-  --secondary: oklch(0.16 0.005 260);
-  --secondary-foreground: oklch(0.9 0 0);
-  --muted: oklch(0.16 0.005 260);
-  --muted-foreground: oklch(0.62 0 0);
-  --accent: oklch(0.72 0.17 195);
-  --accent-foreground: oklch(0.08 0.01 260);
-  --destructive: oklch(0.65 0.22 25);
-  --border: oklch(0.22 0.005 260);
-  --input: oklch(0.22 0.005 260);
-  --ring: oklch(0.72 0.17 195);
+:root {
+  --bg: oklch(0.95 0.01 75);
+  --bg-surface: oklch(0.93 0.012 75);
+  --text: oklch(0.25 0.015 55);
+  --text-muted: oklch(0.50 0.01 55);
+  --accent: oklch(0.48 0.08 240);
+  --accent-hover: oklch(0.42 0.10 240);
+  --border: oklch(0.82 0.008 75);
+  --border-strong: oklch(0.30 0.015 55);
 
-  /* Custom tokens */
-  --hero-gradient-from: oklch(0.72 0.17 195);
-  --hero-gradient-to: oklch(0.68 0.14 240);
-  --glow-color: oklch(0.72 0.17 195);
-  --surface-elevated: oklch(0.14 0.008 260);
-  --success: oklch(0.7 0.18 155);
-  --success-muted: oklch(0.7 0.18 155 / 10%);
-  --warning: oklch(0.75 0.18 55);
-  --warning-muted: oklch(0.75 0.18 55 / 10%);
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-fast: 0.4s;
+  --duration-slow: 1s;
+  --duration-slowest: 1.5s;
 }
 
 /* ============================================
-   Theme B: Light — 溫暖明亮
+   Base
    ============================================ */
-[data-theme="light"] {
-  --background: oklch(0.98 0.005 80);
-  --foreground: oklch(0.18 0.02 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 260);
-  --primary: oklch(0.62 0.2 30);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.01 80);
-  --secondary-foreground: oklch(0.3 0.02 260);
-  --muted: oklch(0.95 0.005 80);
-  --muted-foreground: oklch(0.46 0.02 260);
-  --accent: oklch(0.62 0.2 30);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.58 0.22 25);
-  --border: oklch(0.9 0.01 80);
-  --input: oklch(0.9 0.01 80);
-  --ring: oklch(0.62 0.2 30);
-
-  --hero-gradient-from: oklch(0.62 0.2 30);
-  --hero-gradient-to: oklch(0.58 0.22 350);
-  --glow-color: oklch(0.62 0.2 30);
-  --surface-elevated: oklch(1 0 0);
-  --success: oklch(0.55 0.18 155);
-  --success-muted: oklch(0.55 0.18 155 / 8%);
-  --warning: oklch(0.65 0.18 55);
-  --warning-muted: oklch(0.65 0.18 55 / 8%);
-}
-
-/* ============================================
-   Theme C: Anthropic — 暖色 editorial
-   Warm cream, terracotta accent, dark brown text
-   ============================================ */
-[data-theme="anthropic"] {
-  --background: oklch(0.96 0.015 75);
-  --foreground: oklch(0.18 0.025 55);
-  --card: oklch(0.99 0.008 75);
-  --card-foreground: oklch(0.18 0.025 55);
-  --popover: oklch(0.99 0.008 75);
-  --popover-foreground: oklch(0.18 0.025 55);
-  --primary: oklch(0.6 0.16 40);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.93 0.015 75);
-  --secondary-foreground: oklch(0.25 0.025 55);
-  --muted: oklch(0.93 0.01 75);
-  --muted-foreground: oklch(0.48 0.02 55);
-  --accent: oklch(0.6 0.16 40);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --border: oklch(0.88 0.015 75);
-  --input: oklch(0.88 0.015 75);
-  --ring: oklch(0.6 0.16 40);
-
-  --hero-gradient-from: oklch(0.6 0.16 40);
-  --hero-gradient-to: oklch(0.55 0.14 20);
-  --glow-color: oklch(0.6 0.16 40);
-  --surface-elevated: oklch(0.99 0.008 75);
-  --success: oklch(0.55 0.14 155);
-  --success-muted: oklch(0.55 0.14 155 / 8%);
-  --warning: oklch(0.65 0.14 70);
-  --warning-muted: oklch(0.65 0.14 70 / 8%);
-}
-
-/* ============================================
-   Theme D: Apple — 冷灰極簡
-   Cool gray, Apple Blue accent, near-black text
-   ============================================ */
-[data-theme="apple"] {
-  --background: oklch(0.965 0.003 265);
-  --foreground: oklch(0.15 0.005 265);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.005 265);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.005 265);
-  --primary: oklch(0.55 0.19 260);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.955 0.003 265);
-  --secondary-foreground: oklch(0.25 0.005 265);
-  --muted: oklch(0.955 0.003 265);
-  --muted-foreground: oklch(0.55 0.005 265);
-  --accent: oklch(0.55 0.19 260);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --border: oklch(0.87 0.005 265);
-  --input: oklch(0.87 0.005 265);
-  --ring: oklch(0.55 0.19 260);
-
-  --hero-gradient-from: oklch(0.55 0.19 260);
-  --hero-gradient-to: oklch(0.6 0.16 290);
-  --glow-color: oklch(0.55 0.19 260);
-  --surface-elevated: oklch(1 0 0);
-  --success: oklch(0.52 0.16 150);
-  --success-muted: oklch(0.52 0.16 150 / 8%);
-  --warning: oklch(0.7 0.16 80);
-  --warning-muted: oklch(0.7 0.16 80 / 8%);
-}
-
-/* Light theme card shadow — applies to all light-based themes */
-[data-theme="anthropic"] .card-glow,
-[data-theme="apple"] .card-glow {
-  box-shadow: 0 1px 3px oklch(0 0 0 / 6%);
-}
-
-[data-theme="anthropic"] .card-glow:hover,
-[data-theme="apple"] .card-glow:hover {
-  box-shadow: 0 8px 30px oklch(0 0 0 / 10%);
-}
-
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
-
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(135deg, var(--hero-gradient-from), var(--hero-gradient-to), var(--hero-gradient-from));
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 6s ease-in-out infinite;
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Glow effect for CTA */
-.glow {
-  box-shadow: 0 0 20px color-mix(in oklch, var(--glow-color) 30%, transparent),
-              0 0 60px color-mix(in oklch, var(--glow-color) 10%, transparent);
-}
-
-.glow:hover {
-  box-shadow: 0 0 30px color-mix(in oklch, var(--glow-color) 50%, transparent),
-              0 0 80px color-mix(in oklch, var(--glow-color) 20%, transparent);
-}
-
-/* Card hover glow */
-.card-glow {
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-}
-
-.card-glow:hover {
-  border-color: color-mix(in oklch, var(--glow-color) 50%, transparent);
-  box-shadow: 0 8px 30px color-mix(in oklch, var(--glow-color) 20%, transparent);
-  transform: translateY(-2px);
-}
-
-/* Light theme card shadow */
-[data-theme="light"] .card-glow {
-  box-shadow: 0 1px 3px oklch(0 0 0 / 6%);
-}
-
-[data-theme="light"] .card-glow:hover {
-  box-shadow: 0 8px 30px oklch(0 0 0 / 10%);
-}
-
-/* Blinking cursor */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
-
-/* Portfolio image scroll on hover */
-.portfolio-scroll {
-  object-position: top;
-  transition: object-position 3s ease-in-out;
-}
-
-.group:hover .portfolio-scroll {
-  object-position: bottom;
-}
-
-/* Reduced motion: respect user preference */
-@media (prefers-reduced-motion: reduce) {
-  .text-gradient {
-    animation: none;
-  }
-  .cursor-blink {
-    animation: none;
-  }
-  .portfolio-scroll {
-    transition: none;
-  }
-  .glow,
-  .card-glow {
-    transition: none;
-  }
-}
-
-/* Hero subtle background pattern */
-.bg-hero-pattern {
-  background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
-  background-size: 40px 40px;
 }
 
 /* ============================================
-   Theme F: Brutalism — Neo-Brutalism
-   Hard shadows, thick black borders, warm orange accent
+   Paper grain overlay — Paterson notebook feel
+   Visual element #20 Noise Texture
    ============================================ */
-[data-theme="brutalism"] {
-  --radius: 0.125rem;
-  --background: oklch(0.98 0.02 85);
-  --foreground: oklch(0.12 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0 0);
-  --primary: oklch(0.72 0.15 60);
-  --primary-foreground: oklch(0.05 0 0);
-  --secondary: oklch(0.94 0.015 85);
-  --secondary-foreground: oklch(0.12 0 0);
-  --muted: oklch(0.94 0.01 85);
-  --muted-foreground: oklch(0.42 0.01 55);
-  --accent: oklch(0.72 0.15 60);
-  --accent-foreground: oklch(0.05 0 0);
-  --destructive: oklch(0.58 0.24 25);
-  --border: oklch(0.12 0 0);
-  --input: oklch(0.12 0 0);
-  --ring: oklch(0.72 0.15 60);
-
-  --hero-gradient-from: oklch(0.72 0.15 60);
-  --hero-gradient-to: oklch(0.72 0.15 60);
-  --glow-color: oklch(0.72 0.15 60);
-  --surface-elevated: oklch(1 0 0);
-  --success: oklch(0.72 0.19 155);
-  --success-muted: oklch(0.72 0.19 155 / 15%);
-  --warning: oklch(0.82 0.13 70);
-  --warning-muted: oklch(0.82 0.13 70 / 15%);
-
-  /* Monochromatic+ extension */
-  --primary-light: oklch(0.85 0.08 60);
-  --primary-deep: oklch(0.55 0.15 60);
-  --highlight: oklch(0.65 0.12 210);
-
-  /* Brutalism-specific tokens */
-  --brutal-shadow: 4px 4px 0 0 oklch(0.12 0 0);
-  --brutal-shadow-sm: 3px 3px 0 0 oklch(0.12 0 0);
-  --brutal-shadow-lg: 6px 6px 0 0 oklch(0.12 0 0);
-  --brutal-border: 3px solid oklch(0.12 0 0);
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px;
+  mix-blend-mode: overlay;
 }
 
-/* --- Brutalism visual overrides --- */
-
-/* Card shadows */
-[data-theme="brutalism"] .card-glow {
-  border-width: 3px;
-  border-color: var(--border);
-  box-shadow: var(--brutal-shadow);
-  transition: transform 75ms ease, box-shadow 75ms ease;
-}
-[data-theme="brutalism"] .card-glow:hover {
-  border-color: var(--border);
-  box-shadow: var(--brutal-shadow-lg);
-  transform: translate(-2px, -2px);
+/* ============================================
+   Corridor — the notebook reading column
+   ============================================ */
+.corridor {
+  max-width: var(--width-corridor);
+  margin: 0 auto;
+  padding-left: var(--px-corridor);
+  padding-right: var(--px-corridor);
 }
 
-/* CTA buttons + FAB */
-[data-theme="brutalism"] .glow {
-  box-shadow: var(--brutal-shadow);
-  border: var(--brutal-border);
-  border-radius: var(--radius-lg) !important;
-  transition: transform 75ms ease, box-shadow 75ms ease;
-}
-[data-theme="brutalism"] .glow:hover {
-  box-shadow: var(--brutal-shadow-lg);
-  transform: translate(-2px, -2px);
-  scale: 1 !important;
-}
-[data-theme="brutalism"] .glow:active {
-  box-shadow: none;
-  transform: translate(4px, 4px) !important;
-  scale: 1 !important;
+/* ============================================
+   Section divider — warm gradient fade rule
+   Visual element #32
+   ============================================ */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border) 30%,
+    var(--border) 70%,
+    transparent
+  );
 }
 
-/* Text gradient → flat color */
-[data-theme="brutalism"] .text-gradient {
-  background: none;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
-  background-clip: unset;
-  animation: none;
-  color: var(--foreground);
+/* ============================================
+   Entrance animations — Jarmusch restraint
+   Camera #2 Fade from black (opacity only)
+   ============================================ */
+.entrance {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease);
+}
+.entrance.visible {
+  opacity: 1;
 }
 
-/* All buttons */
-[data-theme="brutalism"] [data-slot="button"] {
-  border-radius: var(--radius-lg) !important;
-  border: var(--brutal-border);
+/* Clip-wipe entrance — Camera #10 */
+.entrance-wipe {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.entrance-wipe.visible {
+  clip-path: inset(0 0 0 0);
 }
 
-/* Non-card-glow containers */
-[data-theme="brutalism"] section .rounded-xl.border {
-  border-width: 3px;
-  border-color: var(--border);
-  box-shadow: var(--brutal-shadow);
+/* Stagger delay applied via data attribute */
+.entrance-stagger {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.entrance-stagger.visible {
+  opacity: 1;
 }
 
-/* Navbar — solid background, no blur */
-[data-theme="brutalism"] header.fixed {
-  background: var(--background) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-bottom-width: 3px;
+/* Slowest fade — for waterfall pause */
+.entrance-slow {
+  opacity: 0;
+  transition: opacity var(--duration-slowest) var(--ease);
+}
+.entrance-slow.visible {
+  opacity: 1;
 }
 
-/* Disable backdrop-blur everywhere */
-[data-theme="brutalism"] [class*="backdrop-blur"] {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+/* ============================================
+   Interaction: underline slide — #12
+   ============================================ */
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--duration-fast) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hover-underline:hover::after {
+  width: 100%;
 }
 
-/* Hero pattern — denser dots */
-[data-theme="brutalism"] .bg-hero-pattern {
-  background-size: 30px 30px;
+/* ============================================
+   Prose — article body typography
+   ============================================ */
+.prose-paterson {
+  max-width: 65ch;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text);
 }
 
-/* Portfolio modal */
-[data-theme="brutalism"] [role="dialog"] .rounded-xl {
-  border-width: 3px;
-  box-shadow: var(--brutal-shadow-lg);
+.prose-paterson h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-top: calc(var(--spacing-block) * 1.5);
+  margin-bottom: var(--spacing-element);
+  color: var(--text);
 }
 
-/* Reduced motion respect */
+.prose-paterson h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 400;
+  margin-top: var(--spacing-block);
+  margin-bottom: 0.75rem;
+}
+
+.prose-paterson p {
+  margin-bottom: var(--spacing-element);
+}
+
+.prose-paterson blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-muted);
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border-strong);
+  margin: var(--spacing-block) 0;
+}
+
+.prose-paterson pre {
+  background: oklch(0.18 0.01 55);
+  color: oklch(0.90 0 0);
+  padding: 1.5rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: var(--spacing-block) 0;
+}
+
+.prose-paterson code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-surface);
+  padding: 0.15em 0.35em;
+  border-radius: 2px;
+}
+
+.prose-paterson a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: oklch(0.48 0.08 240 / 0.4);
+  transition: text-decoration-color var(--duration-fast) var(--ease);
+}
+.prose-paterson a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.prose-paterson ul,
+.prose-paterson ol {
+  padding-left: 1.5rem;
+  margin: var(--spacing-element) 0;
+}
+.prose-paterson li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-paterson img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: var(--spacing-block) 0;
+}
+
+.prose-paterson hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: var(--spacing-block) 0;
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
 @media (prefers-reduced-motion: reduce) {
-  [data-theme="brutalism"] .card-glow,
-  [data-theme="brutalism"] .glow {
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
-}
-
-/* Brutalism Focus States */
-[data-theme="brutalism"] *:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px var(--background), 0 0 0 8px oklch(0.65 0.22 350) !important;
+  .entrance,
+  .entrance-wipe,
+  .entrance-stagger,
+  .entrance-slow {
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
 }

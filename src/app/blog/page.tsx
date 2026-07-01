@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { prisma } from "@/lib/db";
-import { PostCard } from "@/components/blog/post-card";
-import { Navbar } from "@/components/sections/navbar";
-import { Footer } from "@/components/footer";
+import { readingTime } from "@/lib/reading-time";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
+import { EntranceObserver } from "@/components/entrance-observer";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog | Atelier Toby",
-  description: "Toby 嘅技術分享、開發日記、AI 觀點。",
+  title: "Blog",
+  description: "Writing on tech, AI, and building from first principles.",
 };
 
 export default async function BlogPage() {
@@ -19,31 +21,52 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Navbar />
-      <main className="mx-auto max-w-3xl px-6 pt-24 pb-16">
-        <h1 className="text-4xl font-bold flex items-center gap-3">
-          <span className="inline-block w-1.5 h-9 bg-primary-deep rounded-full" />
-          Blog
-        </h1>
-        <p className="mt-2 text-muted-foreground">思考、開發、分享。</p>
+      <EntranceObserver />
+      <SiteNav />
+      <main>
+        {/* Scene 1 — Page Header */}
+        <header className="entrance corridor pt-[calc(var(--spacing-section)*1.5)] pb-[var(--spacing-section)]">
+          <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-normal leading-[1.15] tracking-[-0.02em]">
+            Blog
+          </h1>
+          <p className="mt-3 text-[var(--text-muted)]">
+            Thinking, building, sharing.
+          </p>
+        </header>
 
-        <div className="mt-10 flex flex-col gap-6">
+        {/* Scene 2 — Post List (The Bus Route) */}
+        <section className="corridor pb-[var(--spacing-section)]">
           {posts.length === 0 && (
-            <p className="text-muted-foreground">暫時未有文章。</p>
+            <p className="text-[var(--text-muted)]">Nothing here yet.</p>
           )}
-          {posts.map((post) => (
-            <PostCard
-              key={post.id}
-              slug={post.slug}
-              title={post.title}
-              excerpt={post.excerpt}
-              content={post.content}
-              publishedAt={post.publishedAt}
-            />
-          ))}
-        </div>
+          <div className="flex flex-col">
+            {posts.map((post, i) => (
+              <Link
+                key={post.id}
+                href={`/blog/${post.slug}`}
+                className="entrance-stagger group block border-b border-[var(--border)] py-[var(--spacing-element)] no-underline transition-colors duration-500 first:border-t hover:bg-[var(--bg-surface)]"
+                data-index={i}
+              >
+                <span className="block font-mono text-xs tracking-[0.05em] text-[var(--text-muted)]">
+                  {post.publishedAt
+                    ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })
+                    : ""}
+                  {" \u00b7 "}
+                  {readingTime(post.content)} min read
+                </span>
+                <span className="mt-1 block font-serif text-[clamp(1.125rem,2vw,1.375rem)] font-normal leading-[1.3] text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300">
+                  {post.title}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

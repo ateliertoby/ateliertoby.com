@@ -43,3 +43,9 @@ next-env.d.ts
 .worktrees/
 
 /src/generated/prisma
+.env*.local
+
+# dev artifacts
+.claude/
+docs/
+test_reviewer.js

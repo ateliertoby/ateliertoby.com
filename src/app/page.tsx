@@ -1,8 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/db";
-import { Navbar } from "@/components/sections/navbar";
-import { PostCard } from "@/components/blog/post-card";
-import { Footer } from "@/components/footer";
+import { readingTime } from "@/lib/reading-time";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
+import { EntranceObserver } from "@/components/entrance-observer";
+import { SubscribeForm } from "@/components/subscribe-form";
 
 export const dynamic = "force-dynamic";
 
@@ -13,64 +16,137 @@ export default async function Home() {
     take: 5,
   });
 
+  const featured = posts[0];
+  const recent = posts.slice(1);
+
   return (
     <>
-      <Navbar />
+      <EntranceObserver />
+      <SiteNav />
       <main>
-        {/* Hero */}
-        <section className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 text-center sm:min-h-[70vh]">
-          <div className="bg-hero-pattern absolute inset-0 -z-10 opacity-10" />
-          <h1 className="text-5xl font-black uppercase tracking-tighter sm:text-7xl md:text-8xl">
-            Atelier <span className="text-primary">Toby</span>
-          </h1>
-          <p className="mt-6 max-w-xl border-2 border-black bg-yellow-400 px-3 py-1.5 text-xl font-bold text-black shadow-[4px_4px_0px_#000000]">
-            Tech、AI、開發日記。由第一性原理出發。
-          </p>
-          <div className="mt-8 flex gap-4">
-            <Link
-              href="/blog"
-              className="inline-flex h-12 items-center border-4 border-black bg-pink-500 px-8 font-bold text-white shadow-[4px_4px_0px_#000000] transition-all duration-75 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/courses"
-              className="inline-flex h-12 items-center border-4 border-black bg-white px-8 font-bold text-black shadow-[4px_4px_0px_#000000] transition-all duration-75 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
-            >
-              Courses
-            </Link>
+        {/* Scene 1 — Hero: The Notebook Opening */}
+        <section className="entrance corridor relative flex min-h-[60vh] flex-col justify-end pb-[calc(var(--spacing-section)*1.5)] pt-[var(--spacing-section)]">
+          {/* Visual element #10: printer's cross mark */}
+          <div className="absolute right-[var(--px-corridor)] top-8 h-[10px] w-[10px]" aria-hidden="true">
+            <span className="absolute left-0 top-1/2 h-px w-full bg-[var(--border)]" />
+            <span className="absolute left-1/2 top-0 h-full w-px bg-[var(--border)]" />
           </div>
+
+          <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] font-normal leading-[1.15] tracking-[-0.02em]">
+            Atelier Toby
+          </h1>
+          <p className="mt-6 max-w-[50ch] text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.3] text-[var(--text-muted)]">
+            Tech, AI, and dev diary. From first principles.
+          </p>
         </section>
 
-        {/* Latest Posts */}
-        {posts.length > 0 && (
-          <section className="mx-auto max-w-3xl px-6 py-16">
-            <h2 className="flex items-center gap-3 text-3xl font-black uppercase tracking-tight">
-              <span className="inline-block h-8 w-8 border-4 border-black bg-primary" />
-              最新文章
+        {/* Pillow shot — the notebook by the window */}
+        <div className="corridor py-[var(--spacing-block)]">
+          <Image
+            src="/images/hero.png"
+            alt="A notebook open on a desk by a window, bathed in warm afternoon light"
+            width={1920}
+            height={1080}
+            className="w-full rounded-[4px] opacity-90"
+            priority
+          />
+        </div>
+
+        {/* Scene 2 — Divider */}
+        <hr className="section-divider corridor" />
+
+        {/* Scene 3 — Featured Post (The Encounter) */}
+        {featured && (
+          <section className="entrance-wipe corridor py-[var(--spacing-section)]">
+            {featured.excerpt && (
+              <blockquote className="mb-[var(--spacing-block)] border-l-2 border-[var(--border-strong)] pl-6 font-serif text-[clamp(1.25rem,2.5vw,1.5rem)] italic leading-[1.6] text-[var(--text)]">
+                {featured.excerpt}
+              </blockquote>
+            )}
+            <div>
+              <Link
+                href={`/blog/${featured.slug}`}
+                className="font-serif text-[clamp(1.5rem,3vw,2rem)] font-normal leading-[1.3] text-[var(--text)] no-underline transition-colors duration-300 hover:text-[var(--accent)]"
+              >
+                {featured.title}
+              </Link>
+              <span className="mt-2 block font-mono text-xs tracking-[0.05em] text-[var(--text-muted)]">
+                {featured.publishedAt
+                  ? new Date(featured.publishedAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : ""}
+                {" \u00b7 "}
+                {readingTime(featured.content)} min read
+              </span>
+            </div>
+          </section>
+        )}
+
+        {/* Scene 4 — Recent Posts (The Bus Route) */}
+        {recent.length > 0 && (
+          <section className="corridor pb-[var(--spacing-section)]">
+            <h2 className="mb-[var(--spacing-block)] text-sm font-medium uppercase tracking-[0.08em] text-[var(--text-muted)]">
+              Recent
             </h2>
-            <div className="mt-6 flex flex-col gap-6">
-              {posts.map((post) => (
-                <PostCard
+            <div className="flex flex-col">
+              {recent.map((post, i) => (
+                <Link
                   key={post.id}
-                  slug={post.slug}
-                  title={post.title}
-                  excerpt={post.excerpt}
-                  content={post.content}
-                  publishedAt={post.publishedAt}
-                />
+                  href={`/blog/${post.slug}`}
+                  className="entrance-stagger group block border-b border-[var(--border)] py-[var(--spacing-element)] no-underline transition-colors duration-500 first:border-t hover:bg-[var(--bg-surface)]"
+                  data-index={i}
+                >
+                  <span className="font-serif text-[clamp(1.125rem,2vw,1.375rem)] font-normal leading-[1.3] text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300">
+                    {post.title}
+                  </span>
+                  <span className="mt-1 block font-mono text-xs tracking-[0.05em] text-[var(--text-muted)]">
+                    {post.publishedAt
+                      ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })
+                      : ""}
+                    {" \u00b7 "}
+                    {readingTime(post.content)} min read
+                  </span>
+                  {post.excerpt && (
+                    <span className="mt-2 block text-sm leading-[1.6] text-[var(--text-muted)] line-clamp-2">
+                      {post.excerpt}
+                    </span>
+                  )}
+                </Link>
               ))}
             </div>
             <Link
               href="/blog"
-              className="mt-8 inline-block border-2 border-black bg-white px-4 py-2 text-sm font-bold shadow-[2px_2px_0px_#000000] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+              className="hover-underline mt-8 inline-block text-sm text-[var(--text-muted)] no-underline transition-colors duration-300 hover:text-[var(--text)]"
             >
-              睇全部文章 →
+              All posts &rarr;
             </Link>
           </section>
         )}
+
+        {/* Scene 5 — Pull Quote (Laura's B&W Punctuation) */}
+        <section className="corridor py-[var(--spacing-section)]">
+          <div className="mb-[var(--spacing-block)] h-0.5 w-12 bg-[var(--border-strong)]" />
+          <p className="max-w-[45ch] font-serif text-[clamp(1.5rem,3vw,2rem)] italic leading-[1.5] text-[var(--text)]">
+            The best way to understand something is to build it yourself.
+          </p>
+        </section>
+
+        {/* Scene 6 — Newsletter (The Invitation) */}
+        <section className="entrance corridor py-[var(--spacing-section)]">
+          <p className="mb-[var(--spacing-element)] text-[var(--text-muted)]">
+            Want to follow along?
+          </p>
+          <SubscribeForm />
+        </section>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }
