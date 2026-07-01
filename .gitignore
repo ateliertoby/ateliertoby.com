@@ -33,6 +33,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -47,5 +48,8 @@ next-env.d.ts
 
 # dev artifacts
 .claude/
+.superpowers/
 docs/
 test_reviewer.js
+CLAUDE.md
+AGENTS.md
