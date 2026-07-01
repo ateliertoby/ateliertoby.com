@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_TC, Geist_Mono } from "next/font/google";
+import { Inter, Newsreader, Noto_Sans_TC, Noto_Serif_TC, Geist_Mono } from "next/font/google";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
@@ -9,10 +9,24 @@ const inter = Inter({
   display: "swap",
 });
 
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 const notoSansTC = Noto_Sans_TC({
   variable: "--font-noto-tc",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const notoSerifTC = Noto_Serif_TC({
+  variable: "--font-noto-serif-tc",
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -26,16 +40,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Atelier Toby",
-    template: "%s | Atelier Toby",
+    template: "%s — Atelier Toby",
   },
-  description: "Tech、AI、開發日記。由第一性原理出發。",
+  description: "Tech, AI, and dev diary. From first principles.",
   openGraph: {
     title: "Atelier Toby",
-    description: "Tech、AI、開發日記。由第一性原理出發。",
+    description: "Tech, AI, and dev diary. From first principles.",
     type: "website",
-    locale: "zh_HK",
+    locale: "en",
     url: SITE_URL,
     siteName: "Atelier Toby",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 
@@ -45,19 +62,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-Hant-HK" data-theme="brutalism">
-      <head>
-        {/* GA4 placeholder — replace with your tracking ID */}
-        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
-        <script dangerouslySetInnerHTML={{ __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX');
-        `}} /> */}
-      </head>
+    <html lang="en">
       <body
-        className={`${inter.variable} ${notoSansTC.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${inter.variable} ${newsreader.variable} ${notoSansTC.variable} ${notoSerifTC.variable} ${geistMono.variable} font-sans antialiased`}
       >
         {children}
       </body>
