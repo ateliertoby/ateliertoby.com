@@ -2,7 +2,9 @@
 
 ## Design decisions
 
-**PostgreSQL (Neon) for blog posts, not markdown files.** Posts are created and edited via API calls from a CLI tool. A database makes CRUD straightforward without needing a git commit per post. Neon's serverless PostgreSQL works well with Vercel's edge runtime.
+**PostgreSQL (Neon) for blog posts, not markdown files.** Posts are created and edited via API calls from a CLI tool. A database makes CRUD straightforward without needing a git commit per post. Prisma talks to Neon through the `pg` driver adapter on Vercel's Node serverless functions.
+
+**Static pages with on-demand revalidation.** Pages, the RSS feed, and the sitemap are prerendered; publishing through the API calls `revalidatePath` so changes appear immediately, with a 1-hour time-based revalidate as fallback. Page views never hit the database, and if the database is down, already-rendered pages keep serving. The trade-off: builds query the database, so deploys need `DATABASE_URL` reachable.
 
 **API-key auth on blog routes.** The blog API supports create, edit, and delete via `x-api-key` header. No session, no OAuth — a single shared secret is enough for a single-author site. Published posts are public; drafts require the key.
 
@@ -10,7 +12,7 @@
 
 **Cinematic design system.** The UI follows a film-inspired visual language — serif typography (Newsreader), entrance animations, scene-based page structure. This direction came from experimenting with a cinematic design tool and keeping the result.
 
-**Buttondown for newsletter.** Subscribe form sends emails to Buttondown's API. Optional — the site works without it if the env var is missing, but the form will error.
+**Buttondown for newsletter.** Subscribe form sends emails to Buttondown's API. Optional — the site works without it if the env var is missing, but the form will error. The endpoint validates the email and applies a best-effort per-instance rate limit.
 
 ## Data flow
 
@@ -18,11 +20,11 @@
 Blog publishing:
   CLI tool → POST /api/posts (x-api-key auth)
            → Prisma → PostgreSQL (Neon)
-           → revalidatePath (home + blog pages)
+           → revalidatePath (home, blog, post, feed.xml, sitemap.xml)
 
 Blog reading:
-  Visitor → /blog/[slug]
-          → Prisma query → render markdown (react-markdown + remark-gfm + rehype-highlight)
+  Visitor → /blog/[slug] (prerendered, served from cache)
+          → markdown rendered with react-markdown + remark-gfm + rehype-highlight
 
 Newsletter:
   Visitor → subscribe form → POST /api/subscribe → Buttondown API

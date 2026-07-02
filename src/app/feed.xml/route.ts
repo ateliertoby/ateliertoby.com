@@ -1,7 +1,8 @@
 import { prisma } from "@/lib/db";
 import { SITE_URL } from "@/lib/config";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export async function GET() {
   const posts = await prisma.post.findMany({
@@ -40,7 +41,6 @@ ${items}
   return new Response(feed, {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "s-maxage=3600, stale-while-revalidate",
     },
   });
 }

@@ -14,6 +14,8 @@ Started as a courses landing page (toby.courses), evolved into a personal site f
 4. Run `prisma db push` to create the schema
 5. Deploy
 
+The build prerenders pages from the database, so the initial import build fails until the database is connected and the schema pushed — redeploy once steps 2–4 are done.
+
 ## Local dev
 
 ```bash

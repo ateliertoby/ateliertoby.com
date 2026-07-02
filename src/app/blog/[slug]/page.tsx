@@ -9,7 +9,15 @@ import { EntranceObserver } from "@/components/entrance-observer";
 import { SITE_URL } from "@/lib/config";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const posts = await prisma.post.findMany({
+    where: { status: "published" },
+    select: { slug: true },
+  });
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -17,7 +25,9 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = await prisma.post.findUnique({ where: { slug } });
+  const post = await prisma.post.findUnique({
+    where: { slug, status: "published" },
+  });
   if (!post) return {};
   return {
     title: post.title,

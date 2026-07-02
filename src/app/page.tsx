@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { EntranceObserver } from "@/components/entrance-observer";
 import { SubscribeForm } from "@/components/subscribe-form";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export default async function Home() {
   const posts = await prisma.post.findMany({
