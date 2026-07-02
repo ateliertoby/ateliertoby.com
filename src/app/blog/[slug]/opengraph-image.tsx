@@ -19,7 +19,7 @@ export default async function OGImage({
   const [post, newsreaderData, newsreaderItalicData, interData, geistMonoData] =
     await Promise.all([
       prisma.post.findUnique({
-        where: { slug },
+        where: { slug, status: "published" },
         select: { title: true, publishedAt: true, excerpt: true },
       }),
       readFile(join(fontsDir, "Newsreader-Regular.ttf")),
